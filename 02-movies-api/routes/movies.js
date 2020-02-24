@@ -27,7 +27,7 @@ const moviesApi = app => {
   const moviesService = new MoviesService();
 
   router.get('/', async (req, res, next) => {
-    cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
+    // cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
     const { tags } = req.query;
     try {
       const movies = await moviesService.getMovies({ tags });

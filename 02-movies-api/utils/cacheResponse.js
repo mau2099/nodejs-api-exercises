@@ -1,3 +1,4 @@
+//implementacion de capa de caché
 const { config } = require('../config');
 
 function cacheResponse(res, seconds) {

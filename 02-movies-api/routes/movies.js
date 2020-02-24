@@ -11,6 +11,14 @@ const {
 
 const validationHandler = require('../utils/middleware/validationHandler');
 
+//implementacion de capa de caché
+const cacheResponse = require('../utils/cacheResponse');
+const {
+  FIVE_MINUTES_IN_SECONDS,
+  SIXTY_MINUTES_IN_SECONDS
+} = require('../utils/time');
+
+
 //el valor de app es el objeto asignado en la raiz, en el archivo index.js al instanciar la funcion moviesApi
 const moviesApi = app => {
   const router = express.Router();
@@ -19,6 +27,7 @@ const moviesApi = app => {
   const moviesService = new MoviesService();
 
   router.get('/', async (req, res, next) => {
+    cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
     const { tags } = req.query;
     try {
       const movies = await moviesService.getMovies({ tags });
@@ -34,6 +43,7 @@ const moviesApi = app => {
     '/:movieId',
     validationHandler({ movieId: movieIdSchema }, 'params'),
     async function(req, res, next) {
+      cacheResponse(res, SIXTY_MINUTES_IN_SECONDS);
       const { movieId } = req.params;
 
       try {

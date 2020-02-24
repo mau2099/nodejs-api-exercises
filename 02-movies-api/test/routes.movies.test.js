@@ -19,7 +19,7 @@ describe('routes - movies', function() {
       request.get('/api/movies').end((err, res) => {
         assert.deepEqual(res.body, {
           data: moviesMock,
-          message: 'movies listed'
+          message: 'movies served!'
         });
 
         done();

@@ -11,9 +11,9 @@ describe('services - movies', function() {
   });
 
   const moviesService = new MoviesServices();
-
+ 
   describe('when getMovies method is called', async function() {
-    it('should call the getall MongoLib method', async function() {
+    it('should call the getall MongoLib Method', async function() {
       await moviesService.getMovies({});
       assert.strictEqual(getAllStub.called, true);
     });

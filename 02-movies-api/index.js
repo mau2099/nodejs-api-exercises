@@ -1,5 +1,6 @@
 const express = require('express');
 
+
 const app = express();
 
 const { config } = require('./config');
@@ -18,6 +19,7 @@ const { notFoundHandler } = require('./utils/middleware/notFoundHandler');
 app.use(express.json());
 
 // routes
+userMoviesApi(app);
 moviesApi(app);
 userMoviesApi(app);
 
@@ -39,7 +41,7 @@ app.get('/json', (req, res) => {
 
 app.get('/year/:year', (req, res) => {
   // console.log()
-  const {year} = req.params;
+  const { year } = req.params;
   const isleapYear = year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0);
   res.send(`El año ${year} ${isleapYear ? 'es bisiesto' : 'NO es bisiesto'}`);
 });

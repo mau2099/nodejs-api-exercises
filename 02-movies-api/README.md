@@ -44,7 +44,18 @@
     - Asignar un alias
     	now alias urlOriginal urlAlias(api-mau2099.now.sh)
 
-
 # Agregando autenticacion con passport
 
     - npm i bcrypt
+
+## integrando passport.js
+
+    - npm i passport jsonwebtoken passport-http passport-jwt
+    - npm i -D chalk
+
+    Se agregan los nuevos archivos de configuracion en .env y se leen en el archivo config/index.js
+
+    Se corren los archivos:
+    * 02/movies-api/scripts/mongo/seedUsers.js
+    * 02/movies-api/scripts/mongo/seedApiKeys.js
+    * 02/movies-api/scripts/mongo/seedMovies.js

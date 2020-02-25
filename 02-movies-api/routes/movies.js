@@ -18,7 +18,6 @@ const {
   SIXTY_MINUTES_IN_SECONDS
 } = require('../utils/time');
 
-
 //el valor de app es el objeto asignado en la raiz, en el archivo index.js al instanciar la funcion moviesApi
 const moviesApi = app => {
   const router = express.Router();

@@ -26,6 +26,11 @@ const publicScopes = [
   'delete:user-movies'
 ];
 
+function generateRandomToken() {
+  const buffer = crypto.randomBytes(32);
+  return buffer.toString('hex');
+}
+
 const apiKeys = [
   {
     token: generateRandomToken(),
@@ -36,11 +41,6 @@ const apiKeys = [
     scopes: publicScopes
   }
 ];
-
-function generateRandomToken() {
-  const buffer = crypto.randomBytes(32);
-  return buffer.toString('hex');
-}
 
 async function seedApiKeys() {
   try {

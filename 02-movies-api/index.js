@@ -1,6 +1,5 @@
 const express = require('express');
 
-
 const app = express();
 
 const { config } = require('./config');
@@ -19,7 +18,6 @@ const { notFoundHandler } = require('./utils/middleware/notFoundHandler');
 app.use(express.json());
 
 // routes
-userMoviesApi(app);
 moviesApi(app);
 userMoviesApi(app);
 

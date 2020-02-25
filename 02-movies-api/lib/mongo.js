@@ -5,8 +5,16 @@ const USER = encodeURIComponent(config.dbUser);
 const PASSWORD = encodeURIComponent(config.dbPassword);
 const DB_NAME = config.dbName;
 
-//mongodb+srv://db_admin:<password>@cluster-platzivideos2099-wakfh.gcp.mongodb.net/test
+// mongodb+srv://db_admin:<password>@cluster-platzivideos2099-wakfh.gcp.mongodb.net/test
 const MONGO_URI = `mongodb+srv://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${DB_NAME}?retryWrites=true&w=majority`;
+
+console.log('usuario en config', {
+  dbuser: config.dbUser,
+  encoded: USER,
+  password: config.dbPassword,
+  passwordEncoded: PASSWORD,
+  MONGO_URI
+});
 
 class MongoLib {
   constructor() {

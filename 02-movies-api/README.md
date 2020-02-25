@@ -34,13 +34,17 @@
 # desplegar la api usando now
 
     - descargar [now](https://zeit.co/download)
-	- agregar variables secret a now
-		`Now secret add DB_USER db_user`
-	- crear el archivo now.json con la configuracion para leer las variables de entorno desde now
-	- validar que funcione con 
-		`now dev`
-	- realizar el despliegue con 
-		`now`
-	- Asignar un alias
-		now alias urlOriginal urlAlias(api-mau2099.now.sh)
-		
+    - agregar variables secret a now
+    	`Now secret add DB_USER db_user`
+    - crear el archivo now.json con la configuracion para leer las variables de entorno desde now
+    - validar que funcione con
+    	`now dev`
+    - realizar el despliegue con
+    	`now`
+    - Asignar un alias
+    	now alias urlOriginal urlAlias(api-mau2099.now.sh)
+
+
+# Agregando autenticacion con passport
+
+    - npm i bcrypt

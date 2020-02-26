@@ -27,8 +27,12 @@ const users = [
 
 async function createUser(mongoDB, user) {
   const { name, email, password, isAdmin } = user;
-  const hashedPassword = await bcrypt.hash(password, 10);
 
+  const hashedPassword = await bcrypt.hash(password, 10);
+  console.log('usuario creado con password ->', {
+    password: password,
+    hashedPassword: hashedPassword
+  });
   const userId = await mongoDB.create('users', {
     name,
     email,

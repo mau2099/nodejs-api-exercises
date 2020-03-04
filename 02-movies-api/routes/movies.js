@@ -32,6 +32,7 @@ const moviesApi = app => {
 
   router.get(
     '/',
+    passport.authenticate('jwt', { session: false }),
     scopesValidationHandler(['read:movies']),
     async (req, res, next) => {
       cacheResponse(res, FIVE_MINUTES_IN_SECONDS);

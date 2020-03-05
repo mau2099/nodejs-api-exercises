@@ -15,6 +15,9 @@ app.use(cookieParser());
 //  Basic strategy
 require("./utils/auth/strategies/basic");
 
+// OAuth strategy
+require("./utils/auth/strategies/oauth");
+
 app.post("/auth/sign-in", async function(req, res, next) {
   passport.authenticate("basic", function(error, data) {
     try {
@@ -31,7 +34,7 @@ app.post("/auth/sign-in", async function(req, res, next) {
 
         res.cookie("token", token, {
           httpOnly: !config.dev,
-          secure: !config.dev
+          secure: !config.dev,
         });
 
         res.status(200).json(user);
@@ -49,7 +52,7 @@ app.post("/auth/sign-up", async function(req, res, next) {
     await axios({
       url: `${config.apiUrl}/api/auth/sign-up`,
       method: "post",
-      data: user
+      data: user,
     });
 
     res.status(201).json({ message: "user created" });
@@ -69,7 +72,7 @@ app.post("/user-movies", async function(req, res, next) {
       url: `${config.apiUrl}/api/user-movies`,
       headers: { Authorization: `Bearer ${token}` },
       method: "post",
-      data: userMovie
+      data: userMovie,
     });
 
     if (status !== 201) {
@@ -90,7 +93,7 @@ app.delete("/user-movies/:userMovieId", async function(req, res, next) {
     const { data, status } = await axios({
       url: `${config.apiUrl}/api/user-movies/${userMovieId}`,
       headers: { Authorization: `Bearer ${token}` },
-      method: "delete"
+      method: "delete",
     });
 
     if (status !== 200) {
@@ -102,6 +105,32 @@ app.delete("/user-movies/:userMovieId", async function(req, res, next) {
     next(error);
   }
 });
+
+app.get(
+  "/auth/google-oauth",
+  passport.authenticate("google-oauth", {
+    scope: ["email", "profile", "openid"],
+  }),
+);
+
+app.get(
+  "/auth/google-oauth/callback",
+  passport.authenticate("google-oauth", { session: false }),
+  function(req, res, next) {
+    if (!req.user) {
+      next(boom.unauthorized());
+    }
+
+    const { token, ...user } = req.user;
+
+    res.cookie("token", token, {
+      httpOnly: !config.dev,
+      secure: !config.dev,
+    });
+
+    res.status(200).json(user);
+  },
+);
 
 app.listen(config.port, function() {
   console.log(`Listening http://localhost:${config.port}`);

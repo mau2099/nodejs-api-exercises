@@ -4,6 +4,8 @@
   "description": "",
   "main": "01-server-node.js",
   "scripts": {
+    "node:server" : "node 01-node-server/01-server-node.js",
+    "node:echo" : "node 01-node-server/01b-server-node-echo.js",
     "dev": "DEBUG=app:* nodemon 02-express-server/index",
     "start": "NODE_ENV=production node 02-express-server/index"
   },

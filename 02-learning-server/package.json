@@ -1,0 +1,20 @@
+{
+  "name": "02-learning-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "01-server-node.js",
+  "scripts": {
+    "dev": "DEBUG=app:* nodemon 02-express-server/index",
+    "start": "NODE_ENV=production node 02-express-server/index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

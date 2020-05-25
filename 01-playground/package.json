@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "01-callback": "node 01-playground/01-callback.js",
-    "01b-callbackAPI": "node 01-playground/01b-callback-api.js",
-    "02b-prmisesAPI": "node 01-playground/02b-Promises-api.js",
-    "03-async": "node 01-playground/03-async-await.js",
-    "async:api": "node 01-playground/03b-async-api.js",
-    "emitter": "node 01-playground/04-eventEmitter.js"
+    "01-callback": "node 01-callback.js",
+    "01b-callbackAPI": "node 01b-callback-api.js",
+    "02b-prmisesAPI": "node 02b-Promises-api.js",
+    "03-async": "node 03-async-await.js",
+    "async:api": "node 03b-async-api.js",
+    "emitter": "node 04-eventEmitter.js"
   },
   "repository": {
     "type": "git",

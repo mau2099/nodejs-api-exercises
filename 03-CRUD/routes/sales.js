@@ -12,19 +12,18 @@ const apiRouterSales = function (app) {
       const { tags } = req.query;
       const all = await salesService.getSales({ tags });
       console.log(JSON.stringify(all));
-      res.status(200).json({ data: all, message: 'got all!' });
+      res.status(200).json({ data: all, message: all.lenght > 0 ? `found ${all.lenght}` : 'none founc :c' });
     } catch (err) {
-      console.log(err)
+      console.log(err);
       next(err);
     }
   });
 
   router.get('/:id', async function (req, res, next) {
     try {
-      const { tags } = req.query;
       const { id } = req.params;
-      const one = await salesService.getSale({ tags, id });
-      res.status(200).json({ data: one, message: 'got one!' });
+      const one = await salesService.getSale({ id });
+      res.status(200).json({ data: one, message: one.lenght > 0 ? 'got one!' : 'none founc :c' });
     } catch (err) {
       next(err);
     }
@@ -33,6 +32,8 @@ const apiRouterSales = function (app) {
   router.post('/', async function (req, res, next) {
     try {
       const { body: sale } = req;
+      console.log('action post -> ', sale);
+
       const created = await salesService.createSale({ sale });
       res.status(201).json({ data: created, message: 'created!' });
     } catch (err) {
@@ -42,8 +43,9 @@ const apiRouterSales = function (app) {
 
   router.put('/:id', async function (req, res, next) {
     try {
-      const { body: sale } = req;
-      const updated = await salesService.updateSale({ sale });
+      const { body: sale = {} } = req;
+      const { id } = req.params;
+      const updated = await salesService.updateSale({ id, sale });
       res.status(200).json({ data: updated, message: 'updated!' });
     } catch (err) {
       next(err);

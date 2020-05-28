@@ -11,10 +11,13 @@ const apiRouterSales = function (app) {
     try {
       const { tags } = req.query;
       const all = await salesService.getSales({ tags });
-      console.log(JSON.stringify(all));
-      res.status(200).json({ data: all, message: all.lenght > 0 ? `found ${all.lenght}` : 'none founc :c' });
+      res
+        .status(200)
+        .json({
+          data: all,
+          message: all.lenght > 0 ? `found ${all.lenght}` : 'none founc :c',
+        });
     } catch (err) {
-      console.log(err);
       next(err);
     }
   });
@@ -23,7 +26,12 @@ const apiRouterSales = function (app) {
     try {
       const { id } = req.params;
       const one = await salesService.getSale({ id });
-      res.status(200).json({ data: one, message: one.lenght > 0 ? 'got one!' : 'none founc :c' });
+      res
+        .status(200)
+        .json({
+          data: one,
+          message: one.lenght > 0 ? 'got one!' : 'none founc :c',
+        });
     } catch (err) {
       next(err);
     }
@@ -32,8 +40,6 @@ const apiRouterSales = function (app) {
   router.post('/', async function (req, res, next) {
     try {
       const { body: sale } = req;
-      console.log('action post -> ', sale);
-
       const created = await salesService.createSale({ sale });
       res.status(201).json({ data: created, message: 'created!' });
     } catch (err) {

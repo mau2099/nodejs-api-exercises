@@ -3,7 +3,7 @@ const { config } = require('./../../config/index');
 
 function withErrorStack(error, stack) {
   if (config.dev) {
-    return { error, stack };
+    return { ...error, stack };
   }
   return error;
 }
@@ -14,13 +14,17 @@ function logErrors(err, req, res, next) {
 }
 
 function wrapBoomErrors(err, req, res, next) {
-  if (!err.isBoom) {
+  console.log('--> 209999999 err is boom', { err, isBoom: err.isBoom });
+
+  if (err.isBoom) {
     next(boom.badImplementation(err));
   }
   next(err);
 }
 
 function errorHandler(err, req, res, next) {
+  console.log('----> Error received', err);
+
   const {
     output: { statusCode, payload },
   } = err;

@@ -1,5 +1,9 @@
 const express = require('express');
+
 const SalesService = require('./../services/sales');
+
+const { idSchema, createSaleSchema } = require('./../utils/schemas/sales');
+const validateSchemaMiddleware = require('./../utils/middleware/validateDataHandler');
 
 const apiRouterSales = function (app) {
   const router = express.Router();
@@ -11,33 +15,33 @@ const apiRouterSales = function (app) {
     try {
       const { tags } = req.query;
       const all = await salesService.getSales({ tags });
-      res
-        .status(200)
-        .json({
-          data: all,
-          message: all.lenght > 0 ? `found ${all.lenght}` : 'none founc :c',
-        });
+      res.status(200).json({
+        data: all,
+        message: all.lenght > 0 ? `found ${all.lenght}` : 'none founc :c',
+      });
     } catch (err) {
       next(err);
     }
   });
 
-  router.get('/:id', async function (req, res, next) {
-    try {
-      const { id } = req.params;
-      const one = await salesService.getSale({ id });
-      res
-        .status(200)
-        .json({
+  router.get(
+    '/:id',
+    validateSchemaMiddleware(idSchema, 'params'),
+    async function (req, res, next) {
+      try {
+        const { id } = req.params;
+        const one = await salesService.getSale({ id });
+        res.status(200).json({
           data: one,
           message: one.lenght > 0 ? 'got one!' : 'none founc :c',
         });
-    } catch (err) {
-      next(err);
-    }
-  });
+      } catch (err) {
+        next(err);
+      }
+    },
+  );
 
-  router.post('/', async function (req, res, next) {
+  router.post('/', validateSchemaMiddleware(createSaleSchema) ,async function (req, res, next) {
     try {
       const { body: sale } = req;
       const created = await salesService.createSale({ sale });

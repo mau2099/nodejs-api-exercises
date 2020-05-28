@@ -20,7 +20,7 @@ apiRouterSales(app);
 //instead we would be getting an html as a response idicating "Cannot GET /api/sales2/"
 app.use(notFoundRouteHandler);
 
-//middleware handler error once tryign to do any action
+//middleware handler error once trying to do any action
 app.use(logErrors);
 app.use(errorHandler);
 app.use(wrapBoomErrors);

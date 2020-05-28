@@ -9,6 +9,7 @@ home: /api/sales/
 ##### middlewares
 * errorHandler : for catching errors in console and exponsing them in API
   * @hapi/joi -> for validating data
+  
 * validaDataHandler : used for validating schemas data. Such as products, users, accounts, etc 
   * @hapi/boom : for better code status validation handler
 

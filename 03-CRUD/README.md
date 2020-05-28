@@ -13,7 +13,8 @@ home: /api/sales/
 * validaDataHandler : used for validating schemas data. Such as products, users, accounts, etc 
   * @hapi/boom : for better code status validation handler
 
-* morgan: logger for http routes ["common", "dev", "combined", "short", "tiny"]
+* morgan: logger for http routes  
+  ["common", "dev", "combined", "short", "tiny"]
 * cors: for enabling share content only for whitelist
 #### 1 -> router: (controllers)
   * know how to read: [req.params, req.query, req.body]  
@@ -42,7 +43,9 @@ home: /api/sales/
   * collections: similar to tables
 
 ### Testing
-mocha
-supertest
-sinon
-proxyquire
+``` npm i -D mocha supertest sinon proxyquire ```  
+`` npm run test ``
+mocha: for running test
+supertest: util for temp server
+sinon: mocks for test
+proxyquire: inject mocks in test

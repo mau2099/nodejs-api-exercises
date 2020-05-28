@@ -17,7 +17,10 @@ const apiRouterSales = function (app) {
       const all = await salesService.getSales({ tags });
       res.status(200).json({
         data: all,
-        message: all.lenght > 0 ? `found ${all.lenght}` : 'none founc :c',
+        message:
+          all.length > 0
+            ? `found ${all.length}`
+            : `none found :c ${all.length}`,
       });
     } catch (err) {
       next(err);
@@ -33,7 +36,8 @@ const apiRouterSales = function (app) {
         const one = await salesService.getSale({ id });
         res.status(200).json({
           data: one,
-          message: one.lenght > 0 ? 'got one!' : 'none founc :c',
+          message:
+          Object.keys(one).length > 0 ? 'got one!' : `not found :c`,
         });
       } catch (err) {
         next(err);
@@ -41,7 +45,11 @@ const apiRouterSales = function (app) {
     },
   );
 
-  router.post('/', validateSchemaMiddleware(createSaleSchema) ,async function (req, res, next) {
+  router.post('/', validateSchemaMiddleware(createSaleSchema), async function (
+    req,
+    res,
+    next,
+  ) {
     try {
       const { body: sale } = req;
       const created = await salesService.createSale({ sale });

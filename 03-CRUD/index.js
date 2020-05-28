@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
 const morgan = require("morgan");
+const compression = require("compression");
 const cors = require('cors');
 const { config } = require('./config/index');
 const apiRouterSales = require('./routes/sales');
+
 const {
   errorHandler,
   wrapBoomErrors,
@@ -15,7 +17,8 @@ const notFoundRouteHandler = require('./utils/middleware/notFoundRouteHandler');
 //For sending json objects in body
 app.use(express.json());
 app.use(cors());
-app.use(morgan('common'));
+app.use(morgan('dev'));
+app.use(compression());
 
 //routes
 apiRouterSales(app);

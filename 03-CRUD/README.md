@@ -13,7 +13,8 @@ home: /api/sales/
 * validaDataHandler : used for validating schemas data. Such as products, users, accounts, etc 
   * @hapi/boom : for better code status validation handler
 
-
+* morgan: logger for http routes ["common", "dev", "combined", "short", "tiny"]
+* cors: for enabling share content only for whitelist
 #### 1 -> router: (controllers)
   * know how to read: [req.params, req.query, req.body]  
   * send those params, query and body to [services](#services)
@@ -40,3 +41,8 @@ home: /api/sales/
   * database: the same
   * collections: similar to tables
 
+### Testing
+mocha
+supertest
+sinon
+proxyquire

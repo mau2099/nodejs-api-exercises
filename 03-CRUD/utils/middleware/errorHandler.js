@@ -14,8 +14,6 @@ function logErrors(err, req, res, next) {
 }
 
 function wrapBoomErrors(err, req, res, next) {
-  console.log('--> 209999999 err is boom', { err, isBoom: err.isBoom });
-
   if (err.isBoom) {
     next(boom.badImplementation(err));
   }
@@ -23,8 +21,6 @@ function wrapBoomErrors(err, req, res, next) {
 }
 
 function errorHandler(err, req, res, next) {
-  console.log('----> Error received', err);
-
   const {
     output: { statusCode, payload },
   } = err;

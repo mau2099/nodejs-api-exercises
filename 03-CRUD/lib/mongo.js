@@ -19,8 +19,6 @@ class MongoLib {
     if (!MongoLib.connection) {
       MongoLib.connection = new Promise((resolve, reject) => {
         this.client.connect((err) => {
-          console.log('connect err -> ', err);
-
           if (err) reject(new Error('Mongo Connection Error: ' + err));
           console.log(`MongoDB connected successfully: ${config.dbName}`);
           resolve(this.client.db(this.dbName));
@@ -32,10 +30,6 @@ class MongoLib {
 
   //ACTIONS - CRUD operations
   getAll(collection, query) {
-    console.log('action getAll');
-    console.log('action getAll collection', collection);
-    console.log('action getAll query', query);
-
     return this.connect().then((db) => {
       return db.collection(collection).find(query).toArray();
     });

@@ -12,8 +12,6 @@ class SalesService {
     return sales || [];
   }
   async getSale({ id }) {
-    console.log('get one id', id);
-
     const sale = await this.mongoDb.get(this.collection, id);
     return sale || [];
   }

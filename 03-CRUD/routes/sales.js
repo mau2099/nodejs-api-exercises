@@ -1,9 +1,12 @@
 const express = require('express');
-
 const SalesService = require('./../services/sales');
-
 const { idSchema, createSaleSchema } = require('./../utils/schemas/sales');
 const validateSchemaMiddleware = require('./../utils/middleware/validateDataHandler');
+const cacheResponse = require('./../utils/cacheResponse');
+const {
+  FIVE_MINUTES_IN_SECONDS,
+  SIXTY_MINUTES_IN_SECONDS,
+} = require('./../utils/constants');
 
 const apiRouterSales = function (app) {
   const router = express.Router();
@@ -13,6 +16,7 @@ const apiRouterSales = function (app) {
 
   router.get('/', async function (req, res, next) {
     try {
+      cacheResponse(res, FIVE_MINUTES_IN_SECONDS);
       const { tags } = req.query;
       const all = await salesService.getSales({ tags });
       res.status(200).json({
@@ -36,8 +40,7 @@ const apiRouterSales = function (app) {
         const one = await salesService.getSale({ id });
         res.status(200).json({
           data: one,
-          message:
-          Object.keys(one).length > 0 ? 'got one!' : `not found :c`,
+          message: Object.keys(one).length > 0 ? 'got one!' : `not found :c`,
         });
       } catch (err) {
         next(err);

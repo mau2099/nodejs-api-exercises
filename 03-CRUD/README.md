@@ -44,8 +44,8 @@ home: /api/sales/
 
 ### Testing
 ``` npm i -D mocha supertest sinon proxyquire ```  
-`` npm run test ``
-mocha: for running test
-supertest: util for temp server
-sinon: mocks for test
-proxyquire: inject mocks in test
+`` npm run test ``   
+  * mocha: for running test
+  * supertest: util for temp server
+  * sinon: mocks for test
+  * proxyquire: inject mocks in test

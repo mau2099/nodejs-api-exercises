@@ -1,15 +1,15 @@
-const Joi = require('@hapi/Joi');
+const joi = require('@hapi/joi');
 
 const idSchema = {
-  id: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
+  id: joi.string().regex(/^[0-9a-fA-F]{24}$/),
 };
 
 const createSaleSchema = {
-  product: Joi.string().max(80).required(),
-  tags: Joi.array().items(Joi.string().max(50)),
-  quantity: Joi.number().max(999999999).required(),
-  price: Joi.number().max(999999999).required(),
-  total: Joi.number().max(999999999).required(),
+  product: joi.string().max(80).required(),
+  tags: joi.array().items(joi.string().max(50)),
+  quantity: joi.number().max(999999999).required(),
+  price: joi.number().max(999999999).required(),
+  total: joi.number().max(999999999).required(),
 };
 
 module.exports = { idSchema, createSaleSchema };

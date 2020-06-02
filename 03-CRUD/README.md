@@ -49,3 +49,10 @@ home: /api/sales/
   * supertest: util for temp server
   * sinon: mocks for test
   * proxyquire: inject mocks in test
+
+  ### Deployment
+Usage of vercel (before now.sh)   
+> * Install CLI: ``` npm i -g vercel ```   
+> * Add environment variables: ``` vercel secret add 'name' 'value' ```  
+> * List secrets: ``` vercel secrets ls  ```   
+> * Add a new vercel alias url: ```vercel alias url-old url-new```   

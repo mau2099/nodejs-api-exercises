@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "NODE_ENV=production node index",
-    "test": "mocha --exit"
+    "test": "mocha --exit",
+    "build": "NODE_ENV=production node ./index.js"
   },
   "keywords": [],
   "author": "",

@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const morgan = require("morgan");
-const compression = require("compression");
+const morgan = require('morgan');
+const compression = require('compression');
 const cors = require('cors');
 const { config } = require('./config/index');
 const apiRouterSales = require('./routes/sales');
@@ -21,6 +21,9 @@ app.use(morgan('dev'));
 app.use(compression());
 
 //routes
+app.get('/', function (req, res, next) {
+  res.status(200).json({ dev: config.dev });
+});
 apiRouterSales(app);
 
 //this middleware doesnt use next because can not execute a route

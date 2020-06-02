@@ -5,7 +5,8 @@ ___
 ## 02 creating server with:
 * nodejs 
 * express
-
+## 03 CRUD / API
+## 04 jwt (json web tokens)
 
 ---
 

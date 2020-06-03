@@ -7,6 +7,7 @@ ___
 * express
 ## 03 CRUD / API
 ## 04 jwt (json web tokens)
+## 05 sessions
 
 ---
 
